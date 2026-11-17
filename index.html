@@ -1,83 +1,375 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sapno Ka SMP | Staff Recruitment</title>
+
 <style>
-:root{color-scheme:dark;--bg:#080b12;--panel:#111827;--panel2:#0d1421;--line:#253247;--text:#edf3ff;--muted:#9aa9c0;--accent:#65a9ff;--accent2:#8b7cff;--good:#52d6a0}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 15% 0%,#172b4a 0,transparent 38%),radial-gradient(ellipse at 90% 20%,#251b49 0,transparent 32%),var(--bg);font:15px/1.6 Inter,Segoe UI,Arial,sans-serif;color:var(--text)}
-.wrap{max-width:850px;margin:42px auto;padding:0 18px 50px}.hero,.card{background:linear-gradient(145deg,rgba(19,29,46,.96),rgba(12,18,30,.97));border:1px solid var(--line);border-radius:20px;box-shadow:0 18px 60px #0005}
-.hero{padding:30px;margin-bottom:20px}.eyebrow{color:#91bfff;text-transform:uppercase;letter-spacing:.18em;font-size:11px;font-weight:800}.hero h1{font-size:clamp(27px,5vw,40px);line-height:1.1;margin:10px 0}.hero p{color:var(--muted);margin:8px 0 0}.pill{display:inline-block;border:1px solid #35517a;color:#b9d6ff;background:#14243b;border-radius:999px;padding:5px 11px;font-size:12px;margin-top:15px}
-.card{padding:24px;margin-bottom:16px}.section-title{font-size:18px;margin:0 0 16px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{margin-bottom:17px}label{display:block;font-weight:650;margin-bottom:7px}.required{color:#ff9d9d}input,textarea{width:100%;background:#080f1b;border:1px solid #2b3a51;border-radius:11px;padding:13px 14px;color:var(--text);font:inherit;outline:none}input:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px #65a9ff20}textarea{min-height:105px;resize:vertical}small,.muted{color:var(--muted)}.qnum{color:#8dbbff;font-weight:800;margin-right:7px}.actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap}button{border:0;border-radius:12px;padding:14px 20px;background:linear-gradient(100deg,#438fff,#8272ff);color:white;font-weight:800;font-size:15px;cursor:pointer}button:disabled{opacity:.6;cursor:wait}.notice{color:var(--muted);font-size:12px}.status{display:none;padding:13px 15px;border-radius:12px;margin-top:16px}.status.ok{display:block;background:#103326;border:1px solid #236a4b;color:#a9f1d1}.status.err{display:block;background:#3a1b24;border:1px solid #713244;color:#ffc0ca}
-footer{text-align:center;color:#75859e;font-size:12px;margin-top:22px}a{color:#9bc5ff}
-@media(max-width:620px){.grid{grid-template-columns:1fr}.hero,.card{padding:20px}.wrap{margin:20px auto}}
+:root {
+  color-scheme: dark;
+  --bg:#080b12;
+  --panel:#111827;
+  --panel2:#0d1421;
+  --line:#253247;
+  --text:#edf3ff;
+  --muted:#9aa9c0;
+  --accent:#65a9ff;
+  --accent2:#8b7cff;
+  --good:#52d6a0;
+}
+
+* { box-sizing:border-box; }
+
+body {
+  margin:0;
+  background:
+    radial-gradient(ellipse at 15% 0%,#172b4a 0,transparent 38%),
+    radial-gradient(ellipse at 90% 20%,#251b49 0,transparent 32%),
+    var(--bg);
+  font:15px/1.6 Inter,Segoe UI,Arial,sans-serif;
+  color:var(--text);
+}
+
+.wrap {
+  max-width:850px;
+  margin:42px auto;
+  padding:0 18px 50px;
+}
+
+.hero,.card {
+  background:linear-gradient(145deg,rgba(19,29,46,.96),rgba(12,18,30,.97));
+  border:1px solid var(--line);
+  border-radius:20px;
+  box-shadow:0 18px 60px #0005;
+}
+
+.hero {
+  padding:30px;
+  margin-bottom:20px;
+}
+
+.eyebrow {
+  color:#91bfff;
+  text-transform:uppercase;
+  letter-spacing:.18em;
+  font-size:11px;
+  font-weight:800;
+}
+
+.hero h1 {
+  font-size:clamp(27px,5vw,40px);
+  line-height:1.1;
+  margin:10px 0;
+}
+
+.hero p { color:var(--muted); margin:8px 0 0; }
+
+.pill {
+  display:inline-block;
+  border:1px solid #35517a;
+  color:#b9d6ff;
+  background:#14243b;
+  border-radius:999px;
+  padding:5px 11px;
+  font-size:12px;
+  margin-top:15px;
+}
+
+.card { padding:24px; margin-bottom:16px; }
+
+.section-title { font-size:18px; margin:0 0 16px; }
+
+.grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+
+.field { margin-bottom:17px; }
+
+label {
+  display:block;
+  font-weight:650;
+  margin-bottom:7px;
+}
+
+.required { color:#ff9d9d; }
+
+input,textarea {
+  width:100%;
+  background:#080f1b;
+  border:1px solid #2b3a51;
+  border-radius:11px;
+  padding:13px 14px;
+  color:var(--text);
+  font:inherit;
+  outline:none;
+}
+
+input:focus,textarea:focus {
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px #65a9ff20;
+}
+
+textarea { min-height:105px; resize:vertical; }
+
+small,.muted { color:var(--muted); }
+
+.qnum {
+  color:#8dbbff;
+  font-weight:800;
+  margin-right:7px;
+}
+
+.actions {
+  display:flex;
+  gap:12px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+
+button {
+  border:0;
+  border-radius:12px;
+  padding:14px 20px;
+  background:linear-gradient(100deg,#438fff,#8272ff);
+  color:white;
+  font-weight:800;
+  font-size:15px;
+  cursor:pointer;
+}
+
+button:disabled { opacity:.6; cursor:wait; }
+
+.notice { color:var(--muted); font-size:12px; }
+
+.status {
+  display:none;
+  padding:13px 15px;
+  border-radius:12px;
+  margin-top:16px;
+}
+
+.status.ok {
+  display:block;
+  background:#103326;
+  border:1px solid #236a4b;
+  color:#a9f1d1;
+}
+
+.status.err {
+  display:block;
+  background:#3a1b24;
+  border:1px solid #713244;
+  color:#ffc0ca;
+}
+
+footer {
+  text-align:center;
+  color:#75859e;
+  font-size:12px;
+  margin-top:22px;
+}
+
+a { color:#9bc5ff; }
+
+@media(max-width:620px) {
+  .grid { grid-template-columns:1fr; }
+  .hero,.card { padding:20px; }
+  .wrap { margin:20px auto; }
+}
 </style>
 </head>
-<body><main class="wrap">
-<header class="hero"><div class="eyebrow">Sapno Ka SMP • Team Applications</div><h1>Staff Recruitment</h1><p>Apply to become part of the Sapno Ka SMP team. Complete the form thoughtfully and answer in your own words.</p><span class="pill">Staff Member Application</span></header>
+
+<body>
+<main class="wrap">
+
+<header class="hero">
+  <div class="eyebrow">Sapno Ka SMP • Team Applications</div>
+  <h1>Staff Recruitment</h1>
+  <p>Apply to become part of the Sapno Ka SMP team. Complete the form thoughtfully and answer in your own words.</p>
+  <span class="pill">Staff Member Application</span>
+</header>
+
 <form id="applicationForm">
-<section class="card"><h2 class="section-title">Applicant Details</h2>
+
+<section class="card">
+<h2 class="section-title">Applicant Details</h2>
+
 <div class="grid">
-<div class="field"><label for="real_name">Your name <span class="required">*</span></label><input id="real_name" maxlength="80" required placeholder="Your name"></div>
-<div class="field"><label for="mc_name">Minecraft username <span class="required">*</span></label><input id="mc_name" maxlength="32" required placeholder="In-game username"></div>
-<div class="field"><label for="discord">Discord username <span class="required">*</span></label><input id="discord" maxlength="80" required placeholder="Username or @username"></div>
-<div class="field"><label for="age">Age <span class="required">*</span></label><input id="age" type="number" min="13" max="99" required placeholder="Your age"></div>
-</div></section>
-<section class="card"><h2 class="section-title">Section 1 — Basic Knowledge</h2>
+
+<div class="field">
+<label for="real_name">Your name <span class="required">*</span></label>
+<input id="real_name" name="real_name" maxlength="80" required placeholder="Your name">
+</div>
+
+<div class="field">
+<label for="mc_name">Minecraft username <span class="required">*</span></label>
+<input id="mc_name" name="mc_name" maxlength="32" required placeholder="In-game username">
+</div>
+
+<div class="field">
+<label for="discord">Discord username <span class="required">*</span></label>
+<input id="discord" name="discord" maxlength="80" required placeholder="Username or @username">
+</div>
+
+<div class="field">
+<label for="age">Age <span class="required">*</span></label>
+<input id="age" name="age" type="number" min="13" max="99" required placeholder="Your age">
+</div>
+
+</div>
+</section>
+
+<section class="card">
+<h2 class="section-title">Section 1 — Basic Knowledge</h2>
+
 <div class="field"><label><span class="qnum">01.</span>What are the main responsibilities of a Minecraft server staff member? <span class="required">*</span></label><textarea name="q1" required></textarea></div>
+
 <div class="field"><label><span class="qnum">02.</span>A player reports another player for hacking. How would you investigate before taking action? <span class="required">*</span></label><textarea name="q2" required></textarea></div>
+
 <div class="field"><label><span class="qnum">03.</span>How would you handle someone continuously spamming or abusing others in chat? <span class="required">*</span></label><textarea name="q3" required></textarea></div>
+
 <div class="field"><label><span class="qnum">04.</span>What's the difference between a warning, mute, kick and ban? <span class="required">*</span></label><textarea name="q4" required></textarea></div>
+
 <div class="field"><label><span class="qnum">05.</span>Why is favouritism unacceptable within the staff team? <span class="required">*</span></label><textarea name="q5" required></textarea></div>
+
 </section>
-<section class="card"><h2 class="section-title">Section 2 — Situational Judgement</h2>
+
+<section class="card">
+<h2 class="section-title">Section 2 — Situational Judgement</h2>
+
 <div class="field"><label><span class="qnum">06.</span>Your close friend is caught using hacks. What would you do? <span class="required">*</span></label><textarea name="q6" required></textarea></div>
+
 <div class="field"><label><span class="qnum">07.</span>A player starts abusing you after you warn them. How would you react? <span class="required">*</span></label><textarea name="q7" required></textarea></div>
+
 <div class="field"><label><span class="qnum">08.</span>You notice another staff member abusing their permissions. What would you do? <span class="required">*</span></label><textarea name="q8" required></textarea></div>
+
 <div class="field"><label><span class="qnum">09.</span>Two players are fighting, and both blame each other. How would you resolve the situation? <span class="required">*</span></label><textarea name="q9" required></textarea></div>
+
 <div class="field"><label><span class="qnum">10.</span>You accidentally punish an innocent player. How would you handle it? <span class="required">*</span></label><textarea name="q10" required></textarea></div>
+
 </section>
-<section class="card"><h2 class="section-title">Section 3 — Responsibility</h2>
+
+<section class="card">
+<h2 class="section-title">Section 3 — Responsibility</h2>
+
 <div class="field"><label><span class="qnum">11.</span>How much time can you realistically dedicate to the server daily? <span class="required">*</span></label><textarea name="q11" required></textarea></div>
+
 <div class="field"><label><span class="qnum">12.</span>Are you comfortable following management decisions and server policies? Explain. <span class="required">*</span></label><textarea name="q12" required></textarea></div>
+
 <div class="field"><label><span class="qnum">13.</span>Why do you think you deserve a position in the staff team? <span class="required">*</span></label><textarea name="q13" required></textarea></div>
+
 <div class="field"><label><span class="qnum">14.</span>What would you do if you couldn't remain active for several days? <span class="required">*</span></label><textarea name="q14" required></textarea></div>
+
 </section>
-<section class="card"><h2 class="section-title">Section 4 — Final Challenge</h2>
+
+<section class="card">
+<h2 class="section-title">Section 4 — Final Challenge</h2>
+
 <div class="field"><label><span class="qnum">15.</span>A player reports item theft. There is no video evidence, but you have access to CoreProtect. Explain how you would investigate and handle the case. <span class="required">*</span></label><textarea name="q15" required></textarea></div>
+
 </section>
-<section class="card"><div class="actions"><button id="submitBtn" type="submit">Submit application ↗</button><span class="notice">Your answers will be sent to the Sapno Ka SMP recruitment team.</span></div><div id="status" class="status" role="status"></div></section>
+
+<section class="card">
+<div class="actions">
+<button id="submitBtn" type="submit">Submit application ↗</button>
+<span class="notice">Your answers will be sent to the Sapno Ka SMP recruitment team.</span>
+</div>
+<div id="status" class="status" role="status"></div>
+</section>
+
 </form>
+
 <footer>© Sapno Ka SMP • Applications are reviewed individually by the Management Team.</footer>
+
 </main>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
-/* SETUP: Replace these two values with your Supabase Project URL and anon/public key. */
+/* SUPABASE CONFIGURATION */
 const SUPABASE_URL = "https://iulosmqflrpypvgqrtqo.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_pBzk6KCGxJS6zOxERcF9Bw_RJIAd_Fs";
+
 const form = document.getElementById("applicationForm");
 const btn = document.getElementById("submitBtn");
 const statusBox = document.getElementById("status");
-function showStatus(message, kind){statusBox.textContent=message;statusBox.className="status "+kind;}
-form.addEventListener("submit", async (event)=>{
- event.preventDefault();
- if(SUPABASE_URL.startsWith("YOUR_") || SUPABASE_ANON_KEY.startsWith("YOUR_")){
-   showStatus("The portal has not been connected to its database yet. Please contact the server management team.", "err"); return;
- }
- const data = new FormData(form);
- const payload = {
-  real_name: data.get("real_name").trim(), mc_name: data.get("mc_name").trim(),
-  discord: data.get("discord").trim(), age: Number(data.get("age")),
-  answers: Object.fromEntries(Array.from({length:15},(_,i)=>[`q${i+1}`,String(data.get(`q${i+1}`)||"").trim()])),
-  status: "Pending"
- };
- btn.disabled=true; btn.textContent="Submitting...";
- try{
-  const client=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
-  const {error}=await client.from("staff_applications").insert(payload);
-  if(error) throw error;
-  form.reset(); showStatus("Application submitted successfully! The Management Team will review it. 💙","ok");
- }catch(err){console.error(err);showStatus("Could not submit your application. Please try again later or contact management. ("+err.message+")","err");}
- finally{btn.disabled=false;btn.textContent="Submit application ↗";}
+
+const client = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY
+);
+
+function showStatus(message, kind) {
+  statusBox.textContent = message;
+  statusBox.className = "status " + kind;
+}
+
+form.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  if (!form.reportValidity()) return;
+
+  const data = new FormData(form);
+
+  const payload = {
+    real_name: String(data.get("real_name") || "").trim(),
+    mc_name: String(data.get("mc_name") || "").trim(),
+    discord: String(data.get("discord") || "").trim(),
+    age: Number(data.get("age")),
+
+    answers: Object.fromEntries(
+      Array.from({length:15}, (_, i) => [
+        `q${i+1}`,
+        String(data.get(`q${i+1}`) || "").trim()
+      ])
+    ),
+
+    status: "Pending"
+  };
+
+  if (!payload.real_name || !payload.mc_name || !payload.discord || !payload.age) {
+    showStatus("Please complete all applicant details correctly.", "err");
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = "Submitting...";
+
+  try {
+    const { error } = await client
+      .from("staff_applications")
+      .insert(payload);
+
+    if (error) throw error;
+
+    form.reset();
+
+    showStatus(
+      "Application submitted successfully! The Management Team will review it. 💙",
+      "ok"
+    );
+
+    statusBox.scrollIntoView({behavior:"smooth", block:"center"});
+
+  } catch (err) {
+    console.error("Application submission error:", err);
+
+    showStatus(
+      "Could not submit your application. Please try again later or contact management. (" +
+      err.message + ")",
+      "err"
+    );
+
+  } finally {
+    btn.disabled = false;
+    btn.textContent = "Submit application ↗";
+  }
 });
-</script></body></html>
+</script>
+
+</body>
+</html>
