@@ -19,7 +19,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 /* SETUP: Use the same Supabase Project URL and anon/public key as index.html. NEVER use a service_role key here. */
-const SUPABASE_URL = "https://iulosmqflrpypvgqrtqo.supabase.co/rest/v1/";
+const SUPABASE_URL = "https://iulosmqflrpypvgqrtqo.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_pBzk6KCGxJS6zOxERcF9Bw_RJIAd_Fs";
 const client = (SUPABASE_URL.startsWith("YOUR_")||SUPABASE_ANON_KEY.startsWith("YOUR_")) ? null : window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
 let applications=[], current=null;
